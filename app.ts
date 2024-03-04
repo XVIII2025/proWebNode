@@ -9,7 +9,7 @@ export const app = express();
 
 app.use(
   cors({
-      origin: ["https://projectweb2-2.web.app", "http://localhost:4200"],
+      origin: ["https://projectweb2-2.web.app", "http://localhost:4200", "https://pro-web-node.vercel.app"],
       // origin: "*", //เรียกได้ทุกเว็บ
   })
 );
