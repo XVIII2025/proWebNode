@@ -9,7 +9,7 @@ export const app = express();
 
 app.use(
   cors({
-      origin: ["https://projectweb2-2.web.app", "http://localhost:4200"],
+      origin: ["https://projectweb2-2.web.app", "http://localhost:4200", "https://agreeable-capris-calf.cyclic.app"],
       // origin: "*", //เรียกได้ทุกเว็บ
   })
 );
@@ -21,6 +21,6 @@ app.use("/user", user);
 app.use("/vote", vote);
 app.use("/upload", upload);
 
-// app.use("/", (req, res) => {
-//   res.send("Test!!!");
-// });
+app.use("/", (req, res) => {
+  res.send("Test!!!");
+});
