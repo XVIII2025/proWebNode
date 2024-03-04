@@ -10,6 +10,7 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/mysql": "^2.15.25",
+    "@types/node": "^20.11.24",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.3.3"
   },
