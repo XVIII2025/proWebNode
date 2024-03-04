@@ -20,6 +20,6 @@ exports.app.use(body_parser_1.default.json());
 exports.app.use("/user", user_1.router);
 exports.app.use("/vote", vote_1.router);
 exports.app.use("/upload", upload_1.router);
-// app.use("/", (req, res) => {
+// exports.app.use("/", (req, res) => {
 //   res.send("Test!!!");
 // });
