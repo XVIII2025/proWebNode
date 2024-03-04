@@ -21,6 +21,6 @@ app.use("/user", user);
 app.use("/vote", vote);
 app.use("/upload", upload);
 
-// app.use("/", (req, res) => {
-//   res.send("Test!!!");
-// });
+app.use("/", (req, res) => {
+  res.send("Test!!!");
+});
