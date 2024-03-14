@@ -67,7 +67,7 @@ exports.router.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, fu
         if (!match) {
             return res.status(400).send({ message: "Invalid email or password" });
         }
-        res.send({ message: "Login successful" });
+        res.send({ message: "Login successful", id: matchedUser.id });
     }
     catch (error) {
         console.error("Error during login:", error);
