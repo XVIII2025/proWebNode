@@ -12,7 +12,7 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const cors_1 = __importDefault(require("cors"));
 exports.app = (0, express_1.default)();
 exports.app.use((0, cors_1.default)({
-    origin: ["https://projectwebcat.web.app/", "http://localhost:4200", "https://agreeable-capris-calf.cyclic.app"],
+    origin: ["https://projectwebcat.web.app", "http://localhost:4200", "https://agreeable-capris-calf.cyclic.app"],
     // origin: "*", //เรียกได้ทุกเว็บ
 }));
 exports.app.use(body_parser_1.default.text());

@@ -9,7 +9,7 @@ export const app = express();
 
 app.use(
   cors({
-      origin: ["https://projectwebcat.web.app/", "http://localhost:4200", "https://agreeable-capris-calf.cyclic.app"],
+      origin: ["https://projectwebcat.web.app", "http://localhost:4200", "https://agreeable-capris-calf.cyclic.app"],
       // origin: "*", //เรียกได้ทุกเว็บ
   })
 );
