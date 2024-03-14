@@ -33,9 +33,10 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
+    const id = req.query.id || ''; // ถ้าไม่มีค่า id ส่งมาให้ใช้ค่าว่าง
+    const uid = req.query.uid;
+    
     if (req.body) {
-        const id = req.query.id;
-        const uid = req.query.uid;
         let vote: VoteResponse = req.body;
         let sql = 
         "insert into `vote`(`id`, `uid`, `vote_time`) VALUES (?,?,?)";
@@ -50,9 +51,6 @@ router.post("/", (req, res) => {
             res.status(201).json({ affected_row: result.affectedRows, last_idx: result.insertId });
         });
     }
-    // res.status(200).send('Data inserted successfully'); 
-    // res.status(201).json(body);
-    // res.send("Method POST in vote.ts with " + JSON.stringify(body));
 });
 
 router.delete("/", (req, res) => {
