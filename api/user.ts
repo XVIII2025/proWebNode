@@ -37,13 +37,12 @@ router.post("/login", async (req, res) => {
         return res.status(400).send({ message: "Invalid email or password" });
       }
   
-      res.send({ message: "Login successful" });
+      res.send({ message: "Login successful", id: matchedUser.id });
     } catch (error) {
       console.error("Error during login:", error);
       res.status(500).send({ message: "Internal Server Error" });
     }
-  });
-  
+});
 
 router.get("/all", (req, res) => {
     const sql = "select * from user";
