@@ -46,7 +46,7 @@ exports.router.get("/", (req, res) => {
     }
 });
 exports.router.post("/", (req, res) => {
-    const id = req.query.id || ''; // ถ้าไม่มีค่า id ส่งมาให้ใช้ค่าว่าง
+    const id = req.query.id || 1; // ถ้าไม่มีค่า id ส่งมาให้ใช้ค่าว่าง
     const uid = req.query.uid;
     if (req.body) {
         let vote = req.body;
