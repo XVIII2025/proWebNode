@@ -3,4 +3,5 @@ export interface VoteResponse {
     id:         number;
     uid:        number;
     vote_time:  Date;
+    update_score: number;
 }
