@@ -17,6 +17,27 @@ const express_1 = __importDefault(require("express"));
 const dbConnect_1 = require("../dbConnect");
 const mysql_1 = __importDefault(require("mysql"));
 exports.router = express_1.default.Router();
+exports.router.get("/rank", (req, res) => {
+    const uid = req.query.uid;
+    const currentTime = new Date();
+    const currentTimeString = currentTime.toISOString().slice(0, 19).replace('T', ' ');
+    let sql = "SELECT * FROM vote WHERE uid = ? AND vote_time < ? ORDER BY vote_time DESC LIMIT 1";
+    dbConnect_1.conn.query(sql, [uid, currentTimeString], (err, result) => {
+        if (err) {
+            console.error(err);
+            res.status(500).json({ error: "Internal Server Error" });
+            return;
+        }
+        // ตรวจสอบว่ามีผลลัพธ์หรือไม่
+        if (result.length > 0) {
+            const maxVote = result[0];
+            res.json(maxVote);
+        }
+        else {
+            res.status(404).json({ error: "ไม่พบข้อมูลที่ตรงตามเงื่อนไข" });
+        }
+    });
+});
 exports.router.get("/all", (req, res) => {
     const sql = "select * from vote";
     dbConnect_1.conn.query(sql, (err, result) => {
