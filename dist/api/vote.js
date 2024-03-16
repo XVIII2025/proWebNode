@@ -49,14 +49,16 @@ exports.router.post("/", (req, res) => {
     const id = req.query.id || 1; // ถ้าไม่มีค่า id ส่งมาให้ใช้ค่าว่าง
     const uid = req.query.uid;
     const score = Number(req.query.score);
+    const rank = Number(req.query.rank);
     if (req.body) {
         let vote = req.body;
-        let sql = "insert into `vote`(`id`, `uid`, `vote_time`, `update_score`) VALUES (?,?,?,?)";
+        let sql = "insert into `vote`(`id`, `uid`, `vote_time`, `update_score`, `rank`) VALUES (?,?,?,?,?)";
         sql = mysql_1.default.format(sql, [
             id,
             uid,
             vote.vote_time,
-            score
+            score,
+            rank
         ]);
         dbConnect_1.conn.query(sql, (err, result) => {
             if (err)
@@ -93,9 +95,11 @@ exports.router.put("/", (req, res) => __awaiter(void 0, void 0, void 0, function
     // Merge new data to original
     const updatevote = Object.assign(Object.assign({}, dataOriginal), vote);
     sql =
-        "update  `vote` set `vote_time`=? where `vid`=?";
+        "update  `vote` set `vote_time`=?, `update_score`=?, `rank`=? where `vid`=?";
     sql = mysql_1.default.format(sql, [
         updatevote.vote_time,
+        updatevote.update_score,
+        updatevote.rank,
         vid
     ]);
     dbConnect_1.conn.query(sql, (err, result) => {

@@ -36,17 +36,19 @@ router.post("/", (req, res) => {
     const id = req.query.id || 1; // ถ้าไม่มีค่า id ส่งมาให้ใช้ค่าว่าง
     const uid = req.query.uid;
     const score = Number(req.query.score);
+    const rank = Number(req.query.rank);
     
     if (req.body) {
         let vote: VoteResponse = req.body;
         let sql = 
-        "insert into `vote`(`id`, `uid`, `vote_time`, `update_score`) VALUES (?,?,?,?)";
+        "insert into `vote`(`id`, `uid`, `vote_time`, `update_score`, `rank`) VALUES (?,?,?,?,?)";
 
         sql = mysql.format(sql, [
             id,
             uid,
             vote.vote_time,
-            score
+            score,
+            rank
           ]);
         conn.query(sql, (err, result) => {
             if (err) throw err;
@@ -87,9 +89,11 @@ router.put("/", async (req, res)=>{
     const updatevote = {...dataOriginal, ...vote};
 
     sql = 
-    "update  `vote` set `vote_time`=? where `vid`=?";
+    "update  `vote` set `vote_time`=?, `update_score`=?, `rank`=? where `vid`=?";
     sql = mysql.format(sql, [
         updatevote.vote_time,
+        updatevote.update_score,
+        updatevote.rank,
         vid
     ]);
 
