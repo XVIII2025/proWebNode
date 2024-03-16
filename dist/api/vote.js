@@ -48,13 +48,15 @@ exports.router.get("/", (req, res) => {
 exports.router.post("/", (req, res) => {
     const id = req.query.id || 1; // ถ้าไม่มีค่า id ส่งมาให้ใช้ค่าว่าง
     const uid = req.query.uid;
+    const score = Number(req.query.score);
     if (req.body) {
         let vote = req.body;
-        let sql = "insert into `vote`(`id`, `uid`, `vote_time`) VALUES (?,?,?)";
+        let sql = "insert into `vote`(`id`, `uid`, `vote_time`, `update_score`) VALUES (?,?,?,?)";
         sql = mysql_1.default.format(sql, [
             id,
             uid,
             vote.vote_time,
+            score
         ]);
         dbConnect_1.conn.query(sql, (err, result) => {
             if (err)
