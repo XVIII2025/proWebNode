@@ -31,6 +31,18 @@ exports.router.get("/all", (req, res) => {
         }
     });
 });
+exports.router.get("/byId", (req, res) => {
+    const id = req.query.id;
+    const sql = "select * from upload where id = ?";
+    dbConnect_1.conn.query(sql, [id], (err, result) => {
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json(result);
+        }
+    });
+});
 exports.router.get("/", (req, res) => {
     if (req.query.uid) {
         const uid = req.query.uid;

@@ -24,6 +24,18 @@ router.get("/all", (req, res) => {
     })
 })
 
+router.get("/byId", (req, res) => {
+    const id = req.query.id;
+    const sql = "select * from upload where id = ?";
+    conn.query(sql, [id], (err, result)=>{
+        if(err){
+            res.json(err);
+        }else {
+            res.json(result);
+        }
+    })
+})
+
 router.get("/", (req, res) => {
     if (req.query.uid) {
         const uid = req.query.uid;
